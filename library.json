@@ -1,10 +1,7 @@
 {
   "name": "U8G2",
   "build": {
-    "flags": [
-      "-I cppsrc",
-      "-I csrc"
-    ],
+    "flags": "-I csrc",
     "srcFilter": "+<*> -<sys> -<tools>"
   }
 }
