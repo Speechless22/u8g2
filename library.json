@@ -1,7 +1,6 @@
 {
   "name": "U8G2",
   "build": {
-    "srcDir": ".",
     "srcFilter": "+<*> -<cppsrc> -<sys> -<tools>"
   }
 }
