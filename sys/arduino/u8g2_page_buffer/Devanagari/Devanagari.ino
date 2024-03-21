@@ -372,6 +372,10 @@
 //U8G2_ST7511_AVD_320X240_1_8080 u8g2(U8G2_R0, 13, 11, 2, 3, 4, 5, 6, A4, /*enable/WR=*/ 7, /*cs=*/ 10, /*dc=*/ 9, /*reset=*/ 8); // Enable U8g2 16Bit Mode and connect RD pin with 3.3V/5V
 //U8G2_S1D15300_LM6023_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_S1D15300_LM6023_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_S1D15300_100X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_S1D15300_100X32_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_S1D15300_100X32I_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_S1D15300_100X32I_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_S1D15721_240X64_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_S1D15721_240X64_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_GU800_128X64_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
@@ -418,17 +422,40 @@ u8g2_uint_t u8g2_draw_unifont_devanagari(u8g2_uint_t x, u8g2_uint_t y, const cha
       {
 	/* many more glyphs and corrections are missing */
 	/* please report to https://github.com/olikraus/u8g2/issues/584 */
-	case 0x093e: x-= 12; break;
-	case 0x093f: x-= 19; break;
-	case 0x0941: x-= 10; y+=3; break;		// move down
-	case 0x0947: x-= 12; break;
-	case 0x094d: x-= 10; break;
+	case 0x0901: x-= 14; y-=2; break;                  //  ँँ
+        case 0x0902: x-= 14; y-=2; break;   // move up     //  ं
+        case 0x0903: x-= 14; break;                        //  ः
+        case 0x093e: x-= 12; break;                        //  ा
+        case 0x093f: x-= 16; break;                        //  ि
+        case 0x0940: x-= 12; break;                        //  ी
+        case 0x0941: x-= 15; y+=2; break;		// move down   //  ु
+        case 0x0942: x-= 12; y+=2; break;		// move down   //  ू
+        case 0x0943: x-= 16; y+=2; break;		// move down   //  ृ
+        case 0x0944: x-= 16; y+=2; break;		// move down   //  ॄ
+        case 0x0945: x-= 14; y-=2; break;   // move up     //  ॅ
+        case 0x0946: x-= 14; break;                        //  ॆ
+        case 0x0947: x-= 14; break;                        //  े
+        case 0x0948: x-= 14; break;                        //  ै
+        case 0x0949: x-= 14; break;                        //  ै
+        case 0x094b: x-= 14; break;                        //  ो
+        case 0x094c: x-= 14; break;                        //  ौ
+        case 0x094d: x-= 10; break;                        //  ्
       }
       delta = u8g2.drawGlyph(x, y, e);    
       switch(e)
       {
-	case 0x0941: x-= 3; y -=3; break;		// revert the y shift
-	case 0x094d: x-= 8; break;
+	case 0x0901: x-= 6; y +=2; break;		// revert the y shift
+        case 0x0902: x-= 6; y +=2; break;		// revert the y shift
+        case 0x0941: x-= 3; y -=2; break;		// revert the y shift
+        case 0x0942: x-= 6; y -=2; break;		// revert the y shift
+        case 0x0943: x-= 4; y -=2; break;		// revert the y shift
+        case 0x0944: x-= 4; y -=2; break;		// revert the y shift
+        case 0x0945: x-= 6; y +=2; break;		// revert the y shift
+        case 0x0946: x-= 2; break;
+        case 0x0947: x-= 2; break;
+        case 0x0948: x-= 2; break;
+        case 0x0949: x-= 2; break;
+        case 0x094d: x-= 8; break;
       }
       x += delta;
       sum += delta;    
